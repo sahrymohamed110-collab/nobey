@@ -1,0 +1,302 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Tahoma,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0d0d0d,#171717,#0d0d0d);
+    color:#fff;
+    min-height:100vh;
+    padding:20px;
+}
+
+/* Header */
+
+.topbar{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    font-size:3rem;
+    color:gold;
+    text-shadow:0 0 25px gold;
+    margin-bottom:10px;
+}
+
+.topbar p{
+    color:#aaa;
+}
+
+/* Sections */
+
+section{
+    background:#181818;
+    border:1px solid #2a2a2a;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:25px;
+    box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+
+h2{
+    color:gold;
+    margin-bottom:20px;
+}
+
+/* Dashboard */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.box{
+    background:#222;
+    border:1px solid #333;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.box:hover{
+    transform:translateY(-5px);
+    border-color:gold;
+    box-shadow:0 0 20px rgba(255,215,0,.4);
+}
+
+.box h3{
+    color:#aaa;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+.box span{
+    color:#00ff88;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* Projects */
+
+.projects,
+.upgrades,
+.stocks,
+.employees{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+.card,
+.upgrade,
+.stock,
+.employee{
+    background:#222;
+    border:1px solid #333;
+    border-radius:15px;
+    padding:20px;
+    transition:.3s;
+}
+
+.card:hover,
+.upgrade:hover,
+.stock:hover,
+.employee:hover{
+    transform:translateY(-6px);
+    border-color:gold;
+    box-shadow:0 0 20px rgba(255,215,0,.3);
+}
+
+.card h3,
+.upgrade h3{
+    color:gold;
+    margin-bottom:10px;
+}
+
+.stock h3{
+    color:#00ff88;
+}
+
+.employee h3{
+    color:#00aaff;
+}
+
+.card p,
+.upgrade p,
+.employee p{
+    color:#ccc;
+    margin:8px 0;
+}
+
+/* Buttons */
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:10px;
+    font-size:15px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+.card button{
+    background:gold;
+    color:#111;
+}
+
+.upgrade button{
+    background:#ff9800;
+    color:white;
+}
+
+.employee button{
+    background:#00aaff;
+    color:white;
+}
+
+.stock button{
+    background:#00c853;
+    color:white;
+}
+
+.bank button{
+    background:#2979ff;
+    color:white;
+    margin-bottom:10px;
+}
+
+.settings button{
+    background:#444;
+    color:white;
+}
+
+.settings button:hover{
+    background:#666;
+}
+
+/* News */
+
+#events{
+    background:#222;
+    padding:15px;
+    border-radius:10px;
+    border-right:4px solid gold;
+    color:#ddd;
+    font-size:16px;
+}
+
+/* Owned Projects */
+
+#ownedProjects{
+    list-style:none;
+}
+
+#ownedProjects li{
+    background:#222;
+    margin:12px 0;
+    padding:15px;
+    border-radius:10px;
+    border-right:5px solid gold;
+}
+
+/* Achievements */
+
+.achievements ul,
+.missions ul{
+    list-style:none;
+}
+
+.achievements li,
+.missions li{
+    background:#222;
+    margin:10px 0;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* Statistics */
+
+.statistics p{
+    background:#222;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+}
+
+/* Toast */
+
+#toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#222;
+    color:white;
+    padding:15px 25px;
+    border-radius:12px;
+    opacity:0;
+    transition:.4s;
+    z-index:9999;
+    border:1px solid gold;
+    box-shadow:0 0 20px rgba(255,215,0,.3);
+}
+
+/* Profit & Loss */
+
+.profit{
+    color:#00ff88;
+    font-weight:bold;
+}
+
+.loss{
+    color:#ff5252;
+    font-weight:bold;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111;
+}
+
+::-webkit-scrollbar-thumb{
+    background:gold;
+    border-radius:10px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .topbar h1{
+        font-size:2rem;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .projects,
+    .upgrades,
+    .stocks,
+    .employees{
+        grid-template-columns:1fr;
+    }
+
+}

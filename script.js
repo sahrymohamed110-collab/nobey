@@ -40,14 +40,26 @@ const ownedProjectsEl = document.getElementById("ownedProjects");
 // =================================
 
 const projectsDB = [
-    { name:"مقهى", price:5000, profit:100 },
-    { name:"مطعم", price:15000, profit:300 },
-    { name:"عقار", price:30000, profit:700 },
-    { name:"مصنع", price:100000, profit:2500 },
-    { name:"شركة تقنية", price:250000, profit:5000 },
-    { name:"فندق", price:500000, profit:10000 },
-    { name:"شركة طيران", price:1000000, profit:25000 },
-    { name:"شركة فضاء", price:10000000, profit:250000 }
+{ name:"مقهى", price:5000, profit:100 },
+{ name:"مطعم", price:15000, profit:300 },
+{ name:"سوبر ماركت", price:50000, profit:1200 },
+{ name:"محطة وقود", price:100000, profit:2500 },
+{ name:"عقار", price:300000, profit:7000 },
+{ name:"شركة مقاولات", price:750000, profit:15000 },
+{ name:"شركة نقل", price:1500000, profit:30000 },
+{ name:"مول تجاري", price:3000000, profit:60000 },
+{ name:"مستشفى خاص", price:5000000, profit:100000 },
+{ name:"مصنع", price:10000000, profit:200000 },
+{ name:"جامعة خاصة", price:15000000, profit:300000 },
+{ name:"فندق فاخر", price:25000000, profit:500000 },
+{ name:"بنك استثماري", price:50000000, profit:1000000 },
+{ name:"شركة اتصالات", price:100000000, profit:2500000 },
+{ name:"شركة شحن بحري", price:200000000, profit:5000000 },
+{ name:"نادي كرة قدم", price:300000000, profit:7000000 },
+{ name:"شركة طيران", price:500000000, profit:12000000 },
+{ name:"شركة نفط", price:1000000000, profit:25000000 },
+{ name:"ميناء تجاري", price:2500000000, profit:60000000 },
+{ name:"شركة تقنية عالمية", price:5000000000, profit:150000000 }
 ];
 
 // =================================
@@ -394,25 +406,73 @@ const employeesDB = {
         name:"موظف مبتدئ",
         cost:5000,
         salary:200,
-        profit:50
+        profit:400
     },
 
     manager:{
         name:"مدير",
         cost:25000,
         salary:1000,
-        profit:300
+        profit:2000
     },
 
     executive:{
         name:"مدير تنفيذي",
         cost:100000,
         salary:5000,
-        profit:1500
+        profit:10000
+    },
+
+    marketer:{
+        name:"خبير تسويق",
+        cost:500000,
+        salary:10000,
+        profit:25000
+    },
+
+    analyst:{
+        name:"محلل مالي",
+        cost:1000000,
+        salary:25000,
+        profit:50000
+    },
+
+    regional:{
+        name:"مدير إقليمي",
+        cost:5000000,
+        salary:100000,
+        profit:250000
+    },
+
+    globalCEO:{
+        name:"رئيس تنفيذي عالمي",
+        cost:25000000,
+        salary:500000,
+        profit:1000000
+    },
+
+    aiEngineer:{
+        name:"مهندس ذكاء اصطناعي",
+        cost:100000000,
+        salary:2000000,
+        profit:5000000
+    },
+
+    investor:{
+        name:"مستشار استثماري",
+        cost:250000000,
+        salary:5000000,
+        profit:12000000
+    },
+
+    empireManager:{
+        name:"مدير إمبراطورية",
+        cost:1000000000,
+        salary:15000000,
+        profit:50000000
     }
 
 };
-
 // =================================
 // EMPLOYEE INCOME
 // =================================
@@ -563,27 +623,40 @@ const upgrades = [
 
 {
     name:"إعلانات تسويقية",
-    price:10000,
+    price:50000,
     bonus:0.10,
     bought:false
 },
 
 {
     name:"مدير محترف",
-    price:50000,
+    price:250000,
     bonus:0.25,
     bought:false
 },
 
 {
     name:"أتمتة كاملة",
-    price:150000,
+    price:1000000,
     bonus:0.50,
+    bought:false
+},
+
+{
+    name:"توسع عالمي",
+    price:10000000,
+    bonus:0.75,
+    bought:false
+},
+
+{
+    name:"ذكاء اصطناعي متطور",
+    price:100000000,
+    bonus:1.00,
     bought:false
 }
 
 ];
-
 // =================================
 // BUY UPGRADE
 // =================================
@@ -649,25 +722,66 @@ upgradeButtons.forEach(
 let stocks = [
 
 {
-    name:"الطاقة",
+    name:"⚡ الطاقة",
     price:100,
     owned:0
 },
 
 {
-    name:"التكنولوجيا",
+    name:"💻 التكنولوجيا",
     price:500,
     owned:0
 },
 
 {
-    name:"العقارات",
+    name:"🏢 العقارات",
     price:300,
+    owned:0
+},
+
+{
+    name:"🏦 البنوك",
+    price:800,
+    owned:0
+},
+
+{
+    name:"🛢 النفط",
+    price:1200,
+    owned:0
+},
+
+{
+    name:"🚗 السيارات",
+    price:700,
+    owned:0
+},
+
+{
+    name:"✈ الطيران",
+    price:1500,
+    owned:0
+},
+
+{
+    name:"📡 الاتصالات",
+    price:900,
+    owned:0
+},
+
+{
+    name:"🏥 الرعاية الصحية",
+    price:1100,
+    owned:0
+},
+
+{
+    name:"🛒 التجارة",
+    price:600,
     owned:0
 }
 
-]; 
-
+];
 
 // part 5
 
@@ -796,11 +910,25 @@ getEmployeesIncome();
 // ==========================
 
 const achievements = [
-    "🏆 أول مشروع",
-    "🏆 أول موظف",
-    "🏆 امتلك 5 مشاريع",
-    "💰 امتلك 100 ألف",
-    "💎 امتلك مليون"
+
+"🏆 أول مشروع",
+"🏆 أول موظف",
+"🏆 امتلك 5 مشاريع",
+"🏆 امتلك 10 مشاريع",
+"🏆 امتلك 20 مشروع",
+
+"💰 امتلك 100 ألف",
+"💰 امتلك مليون",
+"💰 امتلك 100 مليون",
+"💰 امتلك مليار",
+
+"👷 وظف 10 موظفين",
+"👷 وظف 50 موظف",
+
+"📈 امتلك 100 سهم",
+
+"👑 أصبح مليارديراً"
+
 ];
 
 let unlockedAchievements = [];
@@ -832,13 +960,30 @@ function renderAchievements(){
 
 }
 
+function rewardAchievement(amount){
+
+    game.balance += amount;
+
+    toast(
+        `🎉 مكافأة إنجاز: ${amount.toLocaleString()}`
+    );
+
+}
+
 function checkAchievements(){
 
     const employeesCount =
 
     game.employees.beginner +
     game.employees.manager +
-    game.employees.executive;
+    game.employees.executive +
+    (game.employees.marketer || 0) +
+    (game.employees.analyst || 0) +
+    (game.employees.regional || 0) +
+    (game.employees.globalCEO || 0) +
+    (game.employees.aiEngineer || 0) +
+    (game.employees.investor || 0) +
+    (game.employees.empireManager || 0);
 
     if(
         game.projects.length >= 1 &&
@@ -846,9 +991,13 @@ function checkAchievements(){
             "🏆 أول مشروع"
         )
     ){
+
         unlockedAchievements.push(
             "🏆 أول مشروع"
         );
+
+        rewardAchievement(10000);
+
     }
 
     if(
@@ -857,9 +1006,13 @@ function checkAchievements(){
             "🏆 أول موظف"
         )
     ){
+
         unlockedAchievements.push(
             "🏆 أول موظف"
         );
+
+        rewardAchievement(25000);
+
     }
 
     if(
@@ -868,9 +1021,43 @@ function checkAchievements(){
             "🏆 امتلك 5 مشاريع"
         )
     ){
+
         unlockedAchievements.push(
             "🏆 امتلك 5 مشاريع"
         );
+
+        rewardAchievement(100000);
+
+    }
+
+    if(
+        game.projects.length >= 10 &&
+        !unlockedAchievements.includes(
+            "🏆 امتلك 10 مشاريع"
+        )
+    ){
+
+        unlockedAchievements.push(
+            "🏆 امتلك 10 مشاريع"
+        );
+
+        rewardAchievement(500000);
+
+    }
+
+    if(
+        game.projects.length >= 20 &&
+        !unlockedAchievements.includes(
+            "🏆 امتلك 20 مشروع"
+        )
+    ){
+
+        unlockedAchievements.push(
+            "🏆 امتلك 20 مشروع"
+        );
+
+        rewardAchievement(5000000);
+
     }
 
     if(
@@ -879,9 +1066,13 @@ function checkAchievements(){
             "💰 امتلك 100 ألف"
         )
     ){
+
         unlockedAchievements.push(
             "💰 امتلك 100 ألف"
         );
+
+        rewardAchievement(50000);
+
     }
 
     if(
@@ -890,9 +1081,73 @@ function checkAchievements(){
             "💎 امتلك مليون"
         )
     ){
+
         unlockedAchievements.push(
             "💎 امتلك مليون"
         );
+
+        rewardAchievement(500000);
+
+    }
+
+    if(
+        game.balance >= 100000000 &&
+        !unlockedAchievements.includes(
+            "💰 امتلك 100 مليون"
+        )
+    ){
+
+        unlockedAchievements.push(
+            "💰 امتلك 100 مليون"
+        );
+
+        rewardAchievement(10000000);
+
+    }
+
+    if(
+        game.balance >= 1000000000 &&
+        !unlockedAchievements.includes(
+            "👑 أصبح مليارديراً"
+        )
+    ){
+
+        unlockedAchievements.push(
+            "👑 أصبح مليارديراً"
+        );
+
+        rewardAchievement(100000000);
+
+    }
+
+    if(
+        employeesCount >= 10 &&
+        !unlockedAchievements.includes(
+            "👷 وظف 10 موظفين"
+        )
+    ){
+
+        unlockedAchievements.push(
+            "👷 وظف 10 موظفين"
+        );
+
+        rewardAchievement(1000000);
+
+    }
+
+    if(
+        employeesCount >= 50 &&
+        !unlockedAchievements.includes(
+            "👷 وظف 50 موظف"
+        )
+    ){
+
+        unlockedAchievements.push(
+            "👷 وظف 50 موظف"
+        );
+
+        rewardAchievement(10000000);
+
     }
 
 }
@@ -901,23 +1156,78 @@ const missions = [
 
 {
     title:"امتلك أول مشروع",
-    reward:5000,
-    done:false
-},
-
-{
-    title:"وظف أول موظف",
     reward:10000,
     done:false
 },
 
 {
+    title:"وظف أول موظف",
+    reward:25000,
+    done:false
+},
+
+{
     title:"امتلك 3 مشاريع",
-    reward:15000,
+    reward:100000,
+    done:false
+},
+
+{
+    title:"امتلك 5 مشاريع",
+    reward:250000,
+    done:false
+},
+
+{
+    title:"امتلك 10 مشاريع",
+    reward:1000000,
+    done:false
+},
+
+{
+    title:"امتلك 20 مشروع",
+    reward:5000000,
+    done:false
+},
+
+{
+    title:"وظف 10 موظفين",
+    reward:1000000,
+    done:false
+},
+
+{
+    title:"وظف 50 موظف",
+    reward:10000000,
+    done:false
+},
+
+{
+    title:"امتلك 100 ألف",
+    reward:50000,
+    done:false
+},
+
+{
+    title:"امتلك مليون",
+    reward:500000,
+    done:false
+},
+
+{
+    title:"امتلك 100 مليون",
+    reward:10000000,
+    done:false
+},
+
+{
+    title:"امتلك مليار",
+    reward:100000000,
     done:false
 }
 
 ];
+
 
 function renderMissions(){
 
@@ -1037,7 +1347,7 @@ function updateStatistics(){
 loadGame();
 
 updateUI();
-saveGame
+saveGame();
 renderStocks();
 renderAchievements();
 
@@ -1047,3 +1357,16 @@ updateStatistics();
 
 eventsEl.textContent =
 "🚀 مرحباً بك في إمبراطورية المال";
+
+function resetGame(){
+
+    if(!confirm("هل أنت متأكد من إعادة ضبط اللعبة؟")){
+        return;
+    }
+
+    localStorage.removeItem("moneyEmpire");
+    localStorage.removeItem("stocks");
+
+    location.reload();
+
+}

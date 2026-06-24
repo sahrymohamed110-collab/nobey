@@ -3,7 +3,7 @@
 // =================================
 
 // بيانات اللعبة
-
+getEmployeesIncome
 let game = {
     balance: 10000,
     income: 0,
@@ -17,7 +17,14 @@ let game = {
     employees: {
         beginner: 0,
         manager: 0,
-        executive: 0
+        executive: 0,
+        marketer: 0,
+        analyst: 0,
+        regional: 0,
+        globalCEO: 0,
+        aiEngineer: 0,
+        investor: 0,
+        empireManager: 0
     }
 };
 
@@ -67,18 +74,78 @@ const projectsDB = [
 // =================================
 
 function saveGame(){
+
     localStorage.setItem(
         "moneyEmpire",
         JSON.stringify(game)
     );
+
     localStorage.setItem(
         "stocks",
         JSON.stringify(stocks)
     );
+
+    localStorage.setItem(
+        "achievements",
+        JSON.stringify(unlockedAchievements)
+    );
+
+    localStorage.setItem(
+        "missions",
+        JSON.stringify(missions)
+    );
+
+    localStorage.setItem(
+        "upgrades",
+        JSON.stringify(upgrades)
+    );
+
+}
+function loadGame(){
+const savedAchievements =
+localStorage.getItem(
+    "achievements"
+);
+
+if(savedAchievements){
+
+    unlockedAchievements =
+    JSON.parse(savedAchievements);
+
 }
 
-function loadGame(){
+const savedMissions =
+localStorage.getItem(
+    "missions"
+);
 
+if(savedMissions){
+
+    missions =
+    JSON.parse(savedMissions);
+
+}
+
+const savedUpgrades =
+localStorage.getItem(
+    "upgrades"
+);
+
+if(savedUpgrades){
+
+    const loaded =
+    JSON.parse(savedUpgrades);
+
+    loaded.forEach(
+        (upgrade,index)=>{
+
+            upgrades[index].bought =
+            upgrade.bought;
+
+        }
+    );
+
+}
     const savedStocks =
 localStorage.getItem("stocks");
 
@@ -148,20 +215,33 @@ function getAssets(){
 
     return Math.floor(assets);
 }
-
+checkAchievements
 // =================================
 // SALARY
 // =================================
-
 function getSalary(){
 
     return (
 
-        game.employees.beginner * 200 +
+        game.employees.beginner * employeesDB.beginner.salary +
 
-        game.employees.manager * 1000 +
+        game.employees.manager * employeesDB.manager.salary +
 
-        game.employees.executive * 5000
+        game.employees.executive * employeesDB.executive.salary +
+
+        game.employees.marketer * employeesDB.marketer.salary +
+
+        game.employees.analyst * employeesDB.analyst.salary +
+
+        game.employees.regional * employeesDB.regional.salary +
+
+        game.employees.globalCEO * employeesDB.globalCEO.salary +
+
+        game.employees.aiEngineer * employeesDB.aiEngineer.salary +
+
+        game.employees.investor * employeesDB.investor.salary +
+
+        game.employees.empireManager * employeesDB.empireManager.salary
 
     );
 }
@@ -476,6 +556,7 @@ const employeesDB = {
 // =================================
 // EMPLOYEE INCOME
 // =================================
+getSalary
 
 function getEmployeesIncome(){
 
@@ -489,6 +570,27 @@ function getEmployeesIncome(){
 
         game.employees.executive *
         employeesDB.executive.profit
+        
+        + game.employees.marketer *
+        employeesDB.marketer.profit +
+
+        game.employees.analyst * 
+        employeesDB.analyst.profit + 
+        
+        game.employees.regional * 
+        employeesDB.regional.profit + 
+        
+        game.employees.globalCEO * 
+        employeesDB.globalCEO.profit + 
+        
+        game.employees.aiEngineer * 
+        employeesDB.aiEngineer.profit + 
+        
+        game.employees.investor * 
+        employeesDB.investor.profit + 
+        
+        game.employees.empireManager * 
+        employeesDB.empireManager.profit
 
     );
 
@@ -619,7 +721,7 @@ if(bankButtons.length >= 2){
 // UPGRADES
 // =================================
 
-const upgrades = [
+let upgrades = [
 
 {
     name:"إعلانات تسويقية",
@@ -1074,7 +1176,7 @@ function checkAchievements(){
         rewardAchievement(50000);
 
     }
-
+missions
     if(
         game.balance >= 1000000 &&
         !unlockedAchievements.includes(
@@ -1117,7 +1219,29 @@ function checkAchievements(){
         );
 
         rewardAchievement(100000000);
+const totalStocks =
+stocks.reduce(
+    (sum, stock) =>
+    sum + stock.owned,
+    0
+);
 
+if(
+    totalStocks >= 100 &&
+    !unlockedAchievements.includes(
+        "📈 امتلك 100 سهم"
+    )
+){
+
+    unlockedAchievements.push(
+        "📈 امتلك 100 سهم"
+    );
+
+    rewardAchievement(
+        5000000
+    );
+
+}
     }
 
     if(
@@ -1152,7 +1276,7 @@ function checkAchievements(){
 
 }
 
-const missions = [
+let missions = [
 
 {
     title:"امتلك أول مشروع",
@@ -1228,7 +1352,6 @@ const missions = [
 
 ];
 
-
 function renderMissions(){
 
     const list =
@@ -1271,46 +1394,53 @@ function checkMissions(){
 
     game.employees.beginner +
     game.employees.manager +
-    game.employees.executive;
+    game.employees.executive +
+    (game.employees.marketer || 0) +
+    (game.employees.analyst || 0) +
+    (game.employees.regional || 0) +
+    (game.employees.globalCEO || 0) +
+    (game.employees.aiEngineer || 0) +
+    (game.employees.investor || 0) +
+    (game.employees.empireManager || 0);
 
-    if(
-        game.projects.length >= 1 &&
-        !missions[0].done
-    ){
+    const rewards = [
 
-        missions[0].done = true;
+        game.projects.length >= 1,
+        employeesCount >= 1,
+        game.projects.length >= 3,
+        game.projects.length >= 5,
+        game.projects.length >= 10,
+        game.projects.length >= 20,
+        employeesCount >= 10,
+        employeesCount >= 50,
+        game.balance >= 100000,
+        game.balance >= 1000000,
+        game.balance >= 100000000,
+        game.balance >= 1000000000
 
-        game.balance +=
-        missions[0].reward;
+    ];
 
-    }
+    rewards.forEach((completed,index)=>{
 
-    if(
-        employeesCount >= 1 &&
-        !missions[1].done
-    ){
+        if(
+            completed &&
+            !missions[index].done
+        ){
 
-        missions[1].done = true;
+            missions[index].done = true;
 
-        game.balance +=
-        missions[1].reward;
+            game.balance +=
+            missions[index].reward;
 
-    }
+            toast(
+                `🎯 تم إنجاز المهمة: ${missions[index].title}`
+            );
 
-    if(
-        game.projects.length >= 3 &&
-        !missions[2].done
-    ){
+        }
 
-        missions[2].done = true;
-
-        game.balance +=
-        missions[2].reward;
-
-    }
+    });
 
 }
-
 function updateStatistics(){
 
     const stats =
